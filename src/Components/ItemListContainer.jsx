@@ -38,6 +38,9 @@ function ItemListContainer() {
       <h2 className="text-3xl font-bold mb-6">
         {categoryId ? `Categoría: ${categoryId}` : 'Todos los Productos'}
       </h2>
+      {products.length === 0 && (
+        <p className="text-gray-600 text-lg">No hay productos disponibles en este momento.</p>
+      )}
       <ItemList products={products} />
     </div>
   );

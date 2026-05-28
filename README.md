@@ -1,174 +1,180 @@
-# blancnoir - E-commerce React
+<h1 align="center">🛒 blancnoir</h1>
+<p align="center">
+  <strong>E-commerce de tecnología · React 19 · Firebase · Tailwind CSS</strong>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React-19.2.0-61DAFB?style=flat-square&logo=react&logoColor=white" />
+  <img src="https://img.shields.io/badge/Vite-7.2.4-646CFF?style=flat-square&logo=vite&logoColor=white" />
+  <img src="https://img.shields.io/badge/Firebase-12.8.0-FFCA28?style=flat-square&logo=firebase&logoColor=black" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-4.1.18-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" />
+  <img src="https://img.shields.io/badge/React_Router-7.12.0-CA4245?style=flat-square&logo=reactrouter&logoColor=white" />
+</p>
+
+---
 
 ## Descripción
-**blancnoir** es una aplicación web de e-commerce desarrollada con React y Firebase, especializada en la venta de productos de tecnología como consolas, celulares, televisores y computadoras. El proyecto implementa un diseño minimalista en blanco y negro que refleja elegancia y modernidad.
 
-## Características Principales
+**blancnoir** es una aplicación web de e-commerce para productos de tecnología, desarrollada como proyecto final del curso de React en CoderHouse. Implementa un flujo de compra completo: catálogo, detalle de producto, carrito y checkout con generación de órdenes en Firebase Firestore.
 
-### Funcionalidades Implementadas
-- ✅ Navegación SPA (Single Page Application) con React Router
-- ✅ Catálogo de productos dinámico
-- ✅ Filtrado por categorías (Consolas, Celulares, Televisores, Computadoras)
-- ✅ Vista detallada de productos
-- ✅ Carrito de compras funcional con Context API
-- ✅ Contador de productos con validación de stock
-- ✅ Sistema de checkout con formulario de compra
-- ✅ Integración con Firebase Firestore para productos y órdenes
-- ✅ Diseño responsive y minimalista
-- ✅ Renderizado condicional (loaders, mensajes de error, carrito vacío)
+El diseño sigue una estética minimalista en blanco y negro, con foco en la claridad y la experiencia de usuario.
 
-## Tecnologías Utilizadas
+---
 
-- **React 19.2.0** - Biblioteca principal para la UI
-- **React Router DOM 7.12.0** - Navegación entre páginas
-- **Firebase 12.8.0** - Base de datos (Firestore) y backend
-- **Vite 7.2.4** - Build tool y servidor de desarrollo
-- **Tailwind CSS 4.1.18** - Framework de estilos
-- **ESLint** - Linter para calidad de código
+## Funcionalidades
 
-## Estructura del Proyecto
+| Área | Detalle |
+|------|---------|
+| Catálogo | Listado de productos con filtrado por categoría |
+| Detalle | Vista individual con descripción, precio y stock disponible |
+| Carrito | Agregar, eliminar y vaciar productos; cálculo de total en tiempo real |
+| Checkout | Formulario con validación, creación de orden en Firestore y confirmación con ID |
+| UI/UX | Responsive design, loaders, mensajes de error y carrito vacío |
+| Backend | Firebase Firestore para productos y órdenes; fallback a datos mock |
+
+**Categorías disponibles:** Consolas · Celulares · Televisores · Computadoras
+
+---
+
+## Tecnologías
+
+- **React 19** con Context API para estado global del carrito
+- **React Router DOM 7** para navegación SPA
+- **Firebase 12** (Firestore) como base de datos en la nube
+- **Vite 7** como build tool y servidor de desarrollo
+- **Tailwind CSS 4** para estilos utilitarios
+- **ESLint** para calidad de código
+
+---
+
+## Estructura del proyecto
 
 ```
 src/
 ├── Components/
-│   ├── Navbar.jsx              # Barra de navegación principal
-│   ├── CartWidget.jsx          # Icono del carrito con contador
-│   ├── ItemListContainer.jsx   # Contenedor del listado de productos
-│   ├── ItemList.jsx            # Lista de productos
+│   ├── Navbar.jsx              # Barra de navegación con CartWidget
+│   ├── CartWidget.jsx          # Ícono del carrito con contador de ítems
+│   ├── ItemListContainer.jsx   # Contenedor del catálogo (fetch + render)
+│   ├── ItemList.jsx            # Grid de productos
 │   ├── Item.jsx                # Tarjeta individual de producto
-│   ├── ItemDetailContainer.jsx # Contenedor del detalle del producto
+│   ├── ItemDetailContainer.jsx # Contenedor del detalle (fetch + render)
 │   ├── ItemDetail.jsx          # Vista detallada del producto
-│   ├── ItemCount.jsx           # Contador de cantidad de productos
-│   ├── Cart.jsx                # Vista del carrito de compras
-│   ├── CartItem.jsx            # Item individual en el carrito
-│   └── Checkout.jsx            # Formulario de finalización de compra
+│   ├── ItemCount.jsx           # Selector de cantidad con validación de stock
+│   ├── Cart.jsx                # Vista del carrito con resumen de compra
+│   ├── CartItem.jsx            # Fila individual en el carrito
+│   ├── Checkout.jsx            # Formulario de compra y generación de orden
+│   └── Button.jsx              # Componente de botón reutilizable
 ├── context/
-│   ├── CartContext.js          # Contexto del carrito
-│   └── CartProvider.jsx        # Provider del carrito con funciones
+│   ├── CartContext.js          # Definición del contexto
+│   └── CartProvider.jsx        # Provider con lógica del carrito
 ├── Firebase/
 │   ├── config.js               # Configuración de Firebase
-│   └── db.js                   # Funciones para interactuar con Firestore
+│   └── db.js                   # Funciones para leer/escribir en Firestore
 ├── services/
-│   └── products.jsx            # Servicios para obtener productos
-├── App.jsx                     # Componente principal con rutas
-└── main.jsx                    # Punto de entrada de la aplicación
+│   ├── products.jsx            # Servicio de productos (Firebase + fallback)
+│   └── mockProducts.js         # Datos mock para desarrollo offline
+├── App.jsx                     # Rutas principales de la aplicación
+└── main.jsx                    # Punto de entrada
 ```
 
-## Instalación y Configuración
+---
 
-### Requisitos Previos
-- Node.js (versión 16 o superior)
-- npm o yarn
-- Cuenta de Firebase
+## Instalación y uso
 
-### Pasos de Instalación
+### Requisitos
 
-1. **Clonar el repositorio**
+- Node.js 16 o superior
+- npm
+
+### Pasos
+
 ```bash
-git clone [URL_DEL_REPOSITORIO]
+# 1. Clonar el repositorio
+git clone <URL_DEL_REPOSITORIO>
 cd EcommerceReact
-```
 
-2. **Instalar dependencias**
-```bash
+# 2. Instalar dependencias
 npm install
-```
 
-3. **Configurar Firebase**
-   - Crea un proyecto en [Firebase Console](https://console.firebase.google.com/)
-   - Habilita Firestore Database
-   - Copia las credenciales de tu proyecto
-   - Las credenciales ya están configuradas en `src/Firebase/config.js`
-
-4. **Estructura de Firestore**
-   
-   Crea dos colecciones en Firestore:
-
-   **Colección: `products`**
-   Campos requeridos por documento:
-   ```javascript
-   {
-     name: "Nombre del producto",
-     price: 1500,
-     description: "Descripción del producto",
-     category: "celulares", // consolas, celulares, televisores, computadoras
-     stock: 10,
-     url: "URL_de_la_imagen"
-   }
-   ```
-
-   **Colección: `orders`**
-   Se crea automáticamente al realizar compras.
-
-5. **Ejecutar el proyecto**
-```bash
+# 3. Iniciar el servidor de desarrollo
 npm run dev
 ```
 
-La aplicación estará disponible en `http://localhost:5173`
+La aplicación estará disponible en `http://localhost:5173`.
 
-## Rutas de la Aplicación
+> Las credenciales de Firebase ya están incluidas en `src/Firebase/config.js`. Para usar tu propio proyecto, reemplazá la configuración con las credenciales de tu Firebase Console.
 
-- `/` - Página principal con todos los productos
-- `/category/:categoryId` - Productos filtrados por categoría
-- `/item/:itemId` - Detalle de un producto específico
-- `/cart` - Vista del carrito de compras
-- `/checkout` - Formulario de finalización de compra
-
-## Funcionalidades del Carrito
-
-El carrito de compras utiliza Context API y proporciona las siguientes funciones:
-
-- `addItem(item, quantity)` - Agregar producto al carrito
-- `removeItem(itemId)` - Eliminar producto del carrito
-- `clear()` - Vaciar el carrito completo
-- `isInCart(itemId)` - Verificar si un producto está en el carrito
-- `getQuantity()` - Obtener cantidad total de items
-- `getTotal()` - Obtener el precio total del carrito
-
-## Flujo de Compra
-
-1. El usuario navega por el catálogo de productos
-2. Selecciona un producto y ve sus detalles
-3. Elige la cantidad y agrega al carrito
-4. Puede seguir comprando o ir al carrito
-5. En el carrito puede modificar cantidades o eliminar productos
-6. Procede al checkout y completa el formulario
-7. Al confirmar, se genera una orden en Firestore
-8. Recibe un ID de orden para seguimiento
-
-## Scripts Disponibles
+### Scripts disponibles
 
 ```bash
-npm run dev      # Inicia el servidor de desarrollo
-npm run build    # Crea el build de producción
-npm run preview  # Previsualiza el build de producción
-npm run lint     # Ejecuta el linter
+npm run dev      # Servidor de desarrollo
+npm run build    # Build de producción
+npm run preview  # Previsualizar el build
+npm run lint     # Análisis de código con ESLint
 ```
 
-## Diseño y Estilo
+---
 
-El proyecto implementa un diseño minimalista con las siguientes características:
+## Configuración de Firebase
 
-- **Paleta de colores**: Blanco y negro principalmente
-- **Tipografía**: Fuentes sans-serif con espaciado amplio
-- **Botones**: Estilo flat con transiciones suaves
-- **Layout**: Responsive con grid y flexbox
-- **Componentes**: Bordes delgados en lugar de sombras
+Si usás tu propio proyecto de Firebase, creá las siguientes colecciones en Firestore:
 
-## Características Técnicas
+**Colección `products`**
+```js
+{
+  name: "Nombre del producto",       // string
+  price: 1500,                       // number
+  description: "Descripción",        // string
+  category: "celulares",             // "consolas" | "celulares" | "televisores" | "computadoras"
+  stock: 10,                         // number
+  url: "https://url-de-imagen.jpg"   // string
+}
+```
 
-- **SPA**: Navegación sin recarga de página
-- **Lazy Loading**: Carga optimizada de componentes
-- **Estado Global**: Manejo con Context API
-- **Validaciones**: Stock, campos de formulario
-- **Error Handling**: Manejo de errores en peticiones a Firebase
-- **Responsive Design**: Adaptable a diferentes dispositivos
+**Colección `orders`** — se genera automáticamente al completar una compra.
+
+---
+
+## Rutas
+
+| Ruta | Descripción |
+|------|-------------|
+| `/` | Catálogo completo |
+| `/category/:categoryId` | Productos filtrados por categoría |
+| `/item/:itemId` | Detalle de producto |
+| `/cart` | Carrito de compras |
+| `/checkout` | Formulario de finalización de compra |
+
+---
+
+## API del carrito (Context)
+
+```js
+addItem(item, quantity)   // Agrega un producto al carrito
+removeItem(itemId)        // Elimina un producto por ID
+clear()                   // Vacía el carrito
+isInCart(itemId)          // Retorna true si el producto ya está en el carrito
+getQuantity()             // Retorna la cantidad total de ítems
+getTotal()                // Retorna el precio total del carrito
+```
+
+---
+
+## Flujo de compra
+
+```
+Catálogo → Detalle → Agregar al carrito → Carrito → Checkout → Orden confirmada (ID)
+```
+
+1. El usuario navega por el catálogo y filtra por categoría
+2. Selecciona un producto, elige cantidad y lo agrega al carrito
+3. Desde el carrito puede modificar o eliminar productos
+4. Completa el formulario de checkout (nombre, email, teléfono, dirección)
+5. Al confirmar, se crea una orden en Firestore y el carrito se vacía
+6. Se muestra el ID de orden para seguimiento
+
+---
 
 ## Autor
 
-Marco - Proyecto Final CoderHouse
-
-## Licencia
-
-Este proyecto fue desarrollado como parte del curso de React en CoderHouse.
+**Marco** — Proyecto Final · Curso de React · CoderHouse
