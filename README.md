@@ -11,6 +11,10 @@
   <img src="https://img.shields.io/badge/React_Router-7.12.0-CA4245?style=flat-square&logo=reactrouter&logoColor=white" />
 </p>
 
+<p align="center">
+  <a href="https://blancnoir.netlify.app/" target="_blank"><strong>🔗 Ver demo en vivo</strong></a>
+</p>
+
 ---
 
 ## Descripción
